@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:piece_wise/database/piecewise_database.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await PiecewiseDatabase.initDatabase();
   runApp(const MainApp());
 }
 
