@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:piece_wise/models/piece.dart';
+import 'package:piece_wise/pages/piecewise_page.dart';
 import 'package:piece_wise/repositories/piece_repository.dart';
 import 'package:piece_wise/utlis/piecewise_logger.dart';
 
@@ -14,7 +15,7 @@ class PieceForm extends StatefulWidget {
   State<PieceForm> createState() => _PieceFormState();
 }
 
-class _PieceFormState extends State<PieceForm> {
+class _PieceFormState extends PiecewisePageState<PieceForm> {
   final _formKey = GlobalKey<FormState>();
 
   String _name = '';
@@ -32,19 +33,17 @@ class _PieceFormState extends State<PieceForm> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Form(
-        key: _formKey,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            _buildNameField(),
-            _buildLearningStateDropdown(),
-            _buildDifficultyDropdown(),
-            _buildSaveButton(),
-          ],
-        ),
+  Widget buildBody(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          _buildNameField(),
+          _buildLearningStateDropdown(),
+          _buildDifficultyDropdown(),
+          _buildSaveButton(),
+        ],
       ),
     );
   }

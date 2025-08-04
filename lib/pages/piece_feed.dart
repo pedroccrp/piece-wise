@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:piece_wise/models/piece.dart';
 import 'package:piece_wise/pages/piece_form.dart';
+import 'package:piece_wise/pages/piecewise_page.dart';
 import 'package:piece_wise/repositories/piece_repository.dart';
 import 'package:piece_wise/routes/piecewise_routes.dart';
 
@@ -11,7 +12,7 @@ class PieceFeed extends StatefulWidget {
   State<PieceFeed> createState() => _PieceFeedState();
 }
 
-class _PieceFeedState extends State<PieceFeed> {
+class _PieceFeedState extends PiecewisePageState<PieceFeed> {
   List<Piece> pieces = [];
 
   @override
@@ -29,14 +30,7 @@ class _PieceFeedState extends State<PieceFeed> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildPieceList(),
-      floatingActionButton: _buildAddPieceButton(),
-    );
-  }
-
-  Widget _buildPieceList() {
+  Widget buildBody(BuildContext context) {
     return ListView.builder(
       itemCount: pieces.length,
       itemBuilder: (context, index) {
@@ -54,7 +48,8 @@ class _PieceFeedState extends State<PieceFeed> {
     );
   }
 
-  Widget _buildAddPieceButton() {
+  @override
+  Widget buildFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
       child: const Icon(Icons.add),
       onPressed: () async {

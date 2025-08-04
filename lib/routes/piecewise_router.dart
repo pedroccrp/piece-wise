@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:piece_wise/models/piece.dart';
 import 'package:piece_wise/pages/piece_feed.dart';
 import 'package:piece_wise/pages/piece_form.dart';
-import 'package:piece_wise/pages/piecewise_page_wrapper.dart';
 import 'package:piece_wise/routes/piecewise_routes.dart';
 
 class PiecewiseRouter {
@@ -15,6 +14,6 @@ class PiecewiseRouter {
       _ => const Center(child: Text('404')),
     };
 
-    return MaterialPageRoute(builder: (_) => PiecewisePageWrapper(body: page));
+    return MaterialPageRoute(builder: (_) => page);
   }
 }
