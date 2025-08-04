@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:piece_wise/models/piece.dart';
+import 'package:piece_wise/repositories/piece_repository.dart';
+import 'package:piece_wise/utlis/piecewise_logger.dart';
+
+enum PieceFormResult { saved, cancelled }
 
 class PieceForm extends StatefulWidget {
   final Piece? piece;
@@ -110,13 +114,19 @@ class _PieceFormState extends State<PieceForm> {
     );
   }
 
-  void _savePiece() {
+  void _savePiece() async {
     final piece = Piece(
       name: _name,
       learningState: _learningState,
       difficulty: _difficulty,
     );
 
-    // Save the piece to the database
+    PieceRepository.create(piece).then((savedPiece) {
+      PiecewiseLogger.info(
+        'Created piece: ${savedPiece.id} - ${savedPiece.name}',
+      );
+    });
+
+    Navigator.pop(context, PieceFormResult.saved);
   }
 }
