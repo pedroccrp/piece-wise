@@ -51,6 +51,7 @@ class _PieceFormState extends PiecewisePageState<PieceForm> {
   Widget _buildNameField() {
     return TextFormField(
       decoration: const InputDecoration(labelText: 'Name'),
+      initialValue: _name,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'Please enter a name';
@@ -115,16 +116,17 @@ class _PieceFormState extends PiecewisePageState<PieceForm> {
 
   void _savePiece() async {
     final piece = Piece(
+      id: widget.piece?.id,
       name: _name,
       learningState: _learningState,
       difficulty: _difficulty,
     );
 
-    PieceRepository.create(piece).then((savedPiece) {
-      PiecewiseLogger.info(
-        'Created piece: ${savedPiece.id} - ${savedPiece.name}',
-      );
-    });
+    if (piece.id != null) {
+      PieceRepository.update(piece);
+    } else {
+      PieceRepository.create(piece);
+    }
 
     Navigator.pop(context, PieceFormResult.saved);
   }
