@@ -46,6 +46,7 @@ class Piece {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'learningState': learningState.name,
       'difficulty': difficulty.name,
@@ -54,6 +55,7 @@ class Piece {
 
   factory Piece.fromJson(Map<String, dynamic> json) {
     return Piece(
+      id: json['id'],
       name: json['name'],
       learningState: PieceLearningState.values.byName(json['learningState']),
       difficulty: PieceDifficulty.values.byName(json['difficulty']),
