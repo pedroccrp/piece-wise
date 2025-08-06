@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:piece_wise/models/piece.dart';
 import 'package:piece_wise/pages/piecewise_page.dart';
 import 'package:piece_wise/repositories/piece_repository.dart';
-import 'package:piece_wise/utlis/piecewise_logger.dart';
 
 enum PieceFormResult { saved, cancelled }
 
