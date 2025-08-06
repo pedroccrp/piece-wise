@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piece_wise/components/piece_card.dart';
 import 'package:piece_wise/models/piece.dart';
 import 'package:piece_wise/pages/piece_form.dart';
 import 'package:piece_wise/pages/piecewise_page.dart';
@@ -34,17 +35,8 @@ class _PieceFeedState extends PiecewisePageState<PieceFeed> {
     return ListView.builder(
       itemCount: pieces.length,
       itemBuilder: (context, index) {
-        return _buildPieceItem(pieces[index]);
+        return PieceCard(piece: pieces[index], onPieceUpdate: _loadPieces);
       },
-    );
-  }
-
-  Widget _buildPieceItem(Piece piece) {
-    return ListTile(
-      key: ValueKey(piece.id),
-      title: Text(piece.name),
-      subtitle: Text(piece.learningState.name),
-      trailing: Text(piece.difficulty.name),
     );
   }
 
